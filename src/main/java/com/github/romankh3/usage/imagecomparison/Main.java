@@ -14,8 +14,8 @@ public class Main {
 
     public static void main(String[] args) {
         // load the images to be compared
-        BufferedImage bufferedImage1 = ImageComparisonUtil.readImageFromResources("image1.png");
-        BufferedImage bufferedImage2 = ImageComparisonUtil.readImageFromResources("image2.png");
+        BufferedImage bufferedImage1 = ImageComparisonUtil.readImageFromResources("actualGoogle.png");
+        BufferedImage bufferedImage2 = ImageComparisonUtil.readImageFromResources("img.png");
 
         // where to save the result (leave null if you want to see the result in the UI)
         File resultDestination = new File("result.png");
