@@ -4,11 +4,13 @@ import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.ImageComparisonUtil;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
+import com.github.romankh3.usage.utils.BrowserUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -24,62 +26,18 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class ImageTest1 {
 
+    int i;
+
     @Test
     public void testImage() throws IOException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
 
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.get("https://www.zoetisequine.com/products/dewormers/quest");
-        byte[] screenshot = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.BYTES);
-
-        // Get the resources directory path
-        String resourcesDirectory = "src/main/resources/";
-
-        // Define the directory path to save the screenshot within resources
-        //String screenshotsDirectory = resourcesDirectory + "/screenshots/";
-
-        // Create the screenshots directory if it doesn't exist
-        File directory = new File(resourcesDirectory);
-
-
-        // Create a file object with the directory path and file name
-        File screenshotFile = new File(resourcesDirectory+"google.png");
-
-        try {
-            // Write the byte array to the file
-            FileOutputStream fileOutputStream = new FileOutputStream(screenshotFile);
-            fileOutputStream.write(screenshot);
-            fileOutputStream.close();
-
-            System.out.println("Screenshot saved to: " + screenshotFile.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        driver.get("https://www.zoetisequine.com/products/dewormers/quest-plus");
-
-        byte[] screenshot2 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.BYTES);
-
-        File screenshotFile2 = new File(resourcesDirectory+"gmail.png");
-
-        try {
-            // Write the byte array to the file
-            FileOutputStream fileOutputStream = new FileOutputStream(screenshotFile2);
-            fileOutputStream.write(screenshot2);
-            fileOutputStream.close();
-
-            System.out.println("Screenshot saved to: " + screenshotFile2.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String url1 = "https://www.zoetisequine.com/products/dewormers/quest";
+        String url2 = "https://www.zoetisequine.com/products/dewormers/quest-plus";
 
 
         // load the images to be compared
-        BufferedImage bufferedImage1 = ImageComparisonUtil.readImageFromResources("gmail.png");
-        BufferedImage bufferedImage2 = ImageComparisonUtil.readImageFromResources("google.png");
+        BufferedImage bufferedImage1 = ImageComparisonUtil.readImageFromResources(url1 +".png");
+        BufferedImage bufferedImage2 = ImageComparisonUtil.readImageFromResources(url2 +".png");
 
 
 
@@ -121,12 +79,27 @@ public class ImageTest1 {
 
 
 
+    }
 
 
 
+    @Test
+    public void test() throws InterruptedException {
+
+        String url1 = "https://www.zoetisequine.com/products/dewormers/quest";
+        String url2 = "https://www.zoetisequine.com/products/dewormers/quest-plus";
 
 
+        i = BrowserUtils.FullPageImage(url1);
+        //BrowserUtils.FullPageImage(url2);
+       //
 
+    }
+
+    @Test
+    public void test2(){
+        String url1 = "https://www.zoetisequine.com/products/dewormers/quest";
+        BrowserUtils.CombineAllİmages(8, url1);
     }
 
 
