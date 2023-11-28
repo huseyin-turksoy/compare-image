@@ -54,6 +54,11 @@ public class ImageTest1 {
 
         BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\huseyin.turksoy\\IdeaProjects\\usage-image-comparison\\result.png"));
 
+        ImageComparisonResult imageComparisonResult = new ImageComparison(expectedImage, actualImage).compareImages();
+
+        //Check the result
+        assertEquals(ImageComparisonState.MATCH, imageComparisonResult.getImageComparisonState());
+
 
         //---------------------------------------------------------------
 
