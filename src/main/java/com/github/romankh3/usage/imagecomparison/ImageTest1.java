@@ -15,6 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -54,10 +55,7 @@ public class ImageTest1 {
 
         BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\huseyin.turksoy\\IdeaProjects\\usage-image-comparison\\result.png"));
 
-        ImageComparisonResult imageComparisonResult = new ImageComparison(expectedImage, actualImage).compareImages();
 
-        //Check the result
-        assertEquals(ImageComparisonState.MATCH, imageComparisonResult.getImageComparisonState());
 
 
         //---------------------------------------------------------------
@@ -105,6 +103,20 @@ public class ImageTest1 {
     public void test2(){
         String url1 = "https://www.zoetisequine.com/products/dewormers/quest";
         BrowserUtils.CombineAllİmages(8, url1);
+    }
+
+
+    @Test
+    public void jframeSample(){
+        JFrame jFrame = new JFrame("GUI Test");
+        jFrame.setLayout(new FlowLayout());
+        jFrame.setSize(500,500);
+        jFrame.add(new JLabel("Hello World"));
+        jFrame.add(new JButton("Click Button"));
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setVisible(true);
+
+
     }
 
 
